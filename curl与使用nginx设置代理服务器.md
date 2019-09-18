@@ -24,24 +24,15 @@ curl -l -H "Content-type: application/json" -H "Authorization: 722dc60db2bb49aea
 import urllib.request
 
 import urllib.parse
-#  proxy练习
-
-
-# 可以找些免费的代理IP
-# https://www.xicidaili.com/2019-06-01/henan
-
 req_url = "http://www.baidu.com"
-# 改为列表，当作代理池
+# 改为列表当作代理池
 proxy_addr = "163.204.240.138:8090"
-
-
 def use_proxy(req_url, proxy_addr):
     proxy = urllib.request.ProxyHandler({"http": proxy_addr})
     opener = urllib.request.build_opener(proxy, urllib.request.HTTPHandler)
     urllib.request.install_opener(opener)
     data = urllib.request.urlopen(req_url).read().decode("utf-8", "ignore")
     return data
-
 data = use_proxy(req_url, proxy_addr)
 print(len(data))
 
