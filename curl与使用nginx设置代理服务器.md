@@ -22,16 +22,27 @@ curl -l -H "Content-type: application/json" -H "Authorization: 722dc60db2bb49aea
 4.测试
 
 import urllib.request
+
 import urllib.parse
+
 req_url = "http://www.baidu.com"
+
 proxy_addr = "163.204.240.138:8090"
+
 def use_proxy(req_url, proxy_addr):
+
     proxy = urllib.request.ProxyHandler({"http": proxy_addr})
+    
     opener = urllib.request.build_opener(proxy, urllib.request.HTTPHandler)
+    
     urllib.request.install_opener(opener)
+    
     data = urllib.request.urlopen(req_url).read().decode("utf-8", "ignore")
+    
     return data
+    
 data = use_proxy(req_url, proxy_addr)
+
 print(len(data))
 
 
